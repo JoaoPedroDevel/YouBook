@@ -24,8 +24,57 @@
     <input type="password" id="senha" name="senha" required>
 
     <a href="../index.php"><button type="submit">Logar</button></a>
-
+    
     </form>
+
+    <?php
+
+session_start(); // Inicia a sessão
+
+include '../conexao/conectaBD.php'; // Inclui o arquivo de conexão
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Recebe dados do formulário
+        $usuario = $_POST['usuario'] ?? null;
+        $senha = $_POST['senha'] ?? null;
+
+        // Conecta ao banco de dados PostgreSQL
+        $conn = pg_connect("host=localhost dbname=atlas user=postgres password=root");
+
+        if (!$conn) {
+            die("Erro na conexão com o banco de dados.");
+        }
+
+        // Consulta para verificar se o usuário existe
+        $query_select = "SELECT usuario, senha FROM usuarios WHERE usuario = $1";
+        $result = pg_query_params($conn, $query_select, array($usuario));
+
+        if (!$result) {
+            die("Erro na consulta ao banco de dados.");
+        }
+
+        $array = pg_fetch_assoc($result);
+        $userArray = $array ?? null;
+
+            // Verifica se o usuário foi encontrado e a senha está correta
+        if ($userArray && md5($senha) === $userArray['senha']) {
+            // Credenciais válidas
+            session_start();
+            $_SESSION['usuario_logado'] = true;
+            $_SESSION['usuario'] = $usuario; // Armazena o nome do usuário na sessão
+            echo "<script>alert('Logado com Sucesso!');</script>";
+            header('Location: ../index.php'); // Redireciona para a página principal
+            exit;
+        } else {
+            // Credenciais inválidas
+            echo "<script>alert('Usuário ou senha incorretos.'); window.location.href='login.php';</script>";
+        }
+
+
+        // Fecha a conexão com o banco
+        pg_close($conn);
+    }
+    ?>
 
     <div>
     <p>Não tem Cadastro?</p>

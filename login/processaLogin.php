@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     // Se não for um POST, redireciona para o formulário de login
-    header('Location: ../login/login.php');
+    header('Location: ./login/login.php');
     exit;
 }
 ?>
