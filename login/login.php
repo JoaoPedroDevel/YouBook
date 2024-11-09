@@ -16,22 +16,18 @@
     </h2>
 
     <form action="login.php" method="post">
-            
-    <label for="usuario">Usuário</label>
-    <input type="text"  id="usuario" name="usuario" required>
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" name="usuario" required>
 
-    <label for="senha">Senha</label>
-    <input type="password" id="senha" name="senha" required>
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required>
 
-    <a href="../index.php"><button type="submit">Logar</button></a>
-    
+        <button type="submit">Logar</button>
     </form>
 
     <?php
-
-session_start(); // Inicia a sessão
-
-include '../conexao/conectaBD.php'; // Inclui o arquivo de conexão
+    session_start(); // Inicia a sessão
+    include '../conexao/conectaBD.php'; // Inclui o arquivo de conexão
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Recebe dados do formulário
@@ -56,22 +52,13 @@ include '../conexao/conectaBD.php'; // Inclui o arquivo de conexão
         $array = pg_fetch_assoc($result);
         $userArray = $array ?? null;
 
-<<<<<<< HEAD
-            // Verifica se o usuário foi encontrado e a senha está correta
-        if ($userArray && md5($senha) === $userArray['senha']) {
-=======
         // Verifica se o usuário foi encontrado e a senha está correta
         if ($userArray && password_verify($senha, $userArray['senha'])) {
->>>>>>> 57eba0b9743db83707b16e37fcdcd085186079ce
             // Credenciais válidas
             session_start();
             $_SESSION['usuario_logado'] = true;
             $_SESSION['usuario'] = $usuario; // Armazena o nome do usuário na sessão
-<<<<<<< HEAD
             echo "<script>alert('Logado com Sucesso!');</script>";
-=======
-            echo "<script>altert('Logado com Sucesso!'); </script>";
->>>>>>> 57eba0b9743db83707b16e37fcdcd085186079ce
             header('Location: ../index.php'); // Redireciona para a página principal
             exit;
         } else {
@@ -79,18 +66,14 @@ include '../conexao/conectaBD.php'; // Inclui o arquivo de conexão
             echo "<script>alert('Usuário ou senha incorretos.'); window.location.href='login.php';</script>";
         }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 57eba0b9743db83707b16e37fcdcd085186079ce
         // Fecha a conexão com o banco
         pg_close($conn);
     }
     ?>
 
     <div>
-    <p>Não tem Cadastro?</p>
-    <a href="../cadastro/cadastroUsuario.php"><button>Clique Aqui!</button></a>
+        <p>Não tem Cadastro?</p>
+        <a href="../cadastro/cadastroUsuario.php"><button>Clique Aqui!</button></a>
     </div>
 
 </body>
