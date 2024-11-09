@@ -56,13 +56,22 @@ include '../conexao/conectaBD.php'; // Inclui o arquivo de conexão
         $array = pg_fetch_assoc($result);
         $userArray = $array ?? null;
 
+<<<<<<< HEAD
             // Verifica se o usuário foi encontrado e a senha está correta
         if ($userArray && md5($senha) === $userArray['senha']) {
+=======
+        // Verifica se o usuário foi encontrado e a senha está correta
+        if ($userArray && password_verify($senha, $userArray['senha'])) {
+>>>>>>> 57eba0b9743db83707b16e37fcdcd085186079ce
             // Credenciais válidas
             session_start();
             $_SESSION['usuario_logado'] = true;
             $_SESSION['usuario'] = $usuario; // Armazena o nome do usuário na sessão
+<<<<<<< HEAD
             echo "<script>alert('Logado com Sucesso!');</script>";
+=======
+            echo "<script>altert('Logado com Sucesso!'); </script>";
+>>>>>>> 57eba0b9743db83707b16e37fcdcd085186079ce
             header('Location: ../index.php'); // Redireciona para a página principal
             exit;
         } else {
@@ -70,7 +79,10 @@ include '../conexao/conectaBD.php'; // Inclui o arquivo de conexão
             echo "<script>alert('Usuário ou senha incorretos.'); window.location.href='login.php';</script>";
         }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 57eba0b9743db83707b16e37fcdcd085186079ce
         // Fecha a conexão com o banco
         pg_close($conn);
     }

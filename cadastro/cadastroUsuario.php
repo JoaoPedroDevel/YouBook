@@ -1,21 +1,31 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
 </head>
 <body>
 
     <h2>Cadastro de Usuário</h2>
+    <h2>Cadastro de Usuário</h2>
 
+    <form action="" method="POST"> <!-- O método POST deve ser definido -->
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" name="usuario" required>
     <form action="" method="POST"> <!-- O método POST deve ser definido -->
         <label for="usuario">Usuário</label>
         <input type="text" id="usuario" name="usuario" required>
 
         <label for="senha">Senha</label>
         <input type="password" id="senha" name="senha" required>
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha" required>
 
+        <label for="confirmaSenha">Digite a senha novamente</label>
+        <input type="password" id="confirmaSenha" name="confirmaSenha" required>
         <label for="confirmaSenha">Digite a senha novamente</label>
         <input type="password" id="confirmaSenha" name="confirmaSenha" required>
 
@@ -23,9 +33,16 @@
             <input type="checkbox" id="termos" name="termos" required>
             Eu concordo e aceito os <a href="../assets/termos/termos.php" target="_blank">termos de uso</a>.
         </label>
+        <label>
+            <input type="checkbox" id="termos" name="termos" required>
+            Eu concordo e aceito os <a href="../assets/termos/termos.php" target="_blank">termos de uso</a>.
+        </label>
 
         <button type="submit">Cadastrar usuário</button>
+        <button type="submit">Cadastrar usuário</button>
 
+        <p>Já tem usuário cadastrado?</p>
+        <a href="../login/login.php"><button type="button">Faça Log-In!</button></a>
         <p>Já tem usuário cadastrado?</p>
         <a href="../login/login.php"><button type="button">Faça Log-In!</button></a>
     </form>
@@ -89,3 +106,4 @@
 
 </body>
 </html>
+
