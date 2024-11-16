@@ -52,12 +52,13 @@
         $array = pg_fetch_assoc($result);
         $userArray = $array ?? null;
 
-        // Verifica se o usuário foi encontrado e a senha está correta
-        if ($userArray && password_verify($senha, $userArray['senha'])) {
+            // Verifica se o usuário foi encontrado e a senha está correta
+        if ($userArray && md5($senha) === $userArray['senha']) {
             // Credenciais válidas
             session_start();
             $_SESSION['usuario_logado'] = true;
-            $_SESSION['usuario'] = $usuario; // Armazena o nome do usuário na sessão
+            $_SESSION['usuario'] = $usuario; 
+
             echo "<script>alert('Logado com Sucesso!');</script>";
             header('Location: ../index.php'); // Redireciona para a página principal
             exit;
@@ -65,7 +66,7 @@
             // Credenciais inválidas
             echo "<script>alert('Usuário ou senha incorretos.'); window.location.href='login.php';</script>";
         }
-
+        
         // Fecha a conexão com o banco
         pg_close($conn);
     }

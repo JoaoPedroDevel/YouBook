@@ -1,6 +1,6 @@
 <?php
 
-$host = 'localhost';
+$host = '192.168.1.148';
 $dbname = 'alpha';
 $user = 'postgres';
 $password = 'root';
