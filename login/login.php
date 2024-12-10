@@ -58,7 +58,6 @@
             session_start();
             $_SESSION['usuario_logado'] = true;
             $_SESSION['usuario'] = $usuario; // Armazena o nome do usuário na sessão
-<<<<<<< HEAD
             echo "<script>alert('Logado com Sucesso!');</script>";
             header('Location: ../index.php'); // Redireciona para a página principal
             exit;
